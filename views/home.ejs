@@ -1,0 +1,31 @@
+
+        
+        <%- include ('header') %>
+        <%- include ('banner') %>
+       <hr>
+       <h3 class="text-center">Pesquisar vagas no site </h3>
+        <div class="container">
+        <div class="row form-inline text-center">
+            <input type="text" class="form-control" style="width: 900px;"  placeholder="Pesquisar vaga">
+            <input type="submit"class="btn btn-primary btn-large" value=" Pesquisar">
+        </div>
+         </div>   
+        <hr>
+          <% categorias.forEach(categoria =>{ %>  
+        <div class="container">
+         <h1> <%-categoria.categoria %> </h1> 
+          
+          <ul>
+            <% categoria.vagas.forEach( vaga =>{  %>
+            <li  ><a style="color: black;" href="/vaga/<%- vaga.id %>"><%- vaga.vaga %></a></li>
+            <%}) %>
+          </ul>
+             
+       <% }) %>
+        </div>
+        
+        <hr>
+        
+        <hr>
+<%- include ('footer') %>
+       

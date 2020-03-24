@@ -1,0 +1,89 @@
+<%-include('header')%>
+
+<h1 class="text-center">Gerenciador de Vagas</h1>
+<hr>
+<div class="container">
+    <table class="table table-striped">
+     <tr>
+       <th>ID</th>
+      <th>Titulo Vaga</th>
+      <th>Acões</th>
+     </tr>
+      <tbody>
+          <% vagas.forEach( vaga =>{  %> 
+            <tr>
+             
+              <td><%- vaga.id %></td>
+              <td><%- vaga.vaga %></td>
+              <td><a class="btn btn-info" data-toggle="modal" data-target="#editar<%- vaga.id %>" >Editar</a> || <a class="btn btn-danger" href="">Remover</a> || <a class="btn btn-success" data-toggle="modal" data-target="#detalhe">Detalhes</a></td>
+         <td> 
+            <!-- Modal detalhe -->
+            <div class="modal fade" id="detalhe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Detalhes Da Vaga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Modal Editar -->
+            <div class="modal fade" id="editar<%- vaga.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Vaga</h5>
+                    <div class="row">
+                      <h2>ID:<p><%- vaga.id %></p> </h2> 
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                   <h3><%- vaga.vaga %></h3> 
+                   
+                   <label for="Categoria">Categoria</label>
+                    <select name="catID"  class="form-control">
+                        <option value="0">Selecione ...</option>  
+                        <% categorias.forEach( cat =>{  %>
+                        <option value="<%- cat.id %>"><%- cat.categoria%></option>
+                        <%}) %>
+                   
+                   </select>
+                   
+                   <br>
+                   <label for="descricao">Descrição</label>
+                    <p><%- vaga.descricao %></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div></td>
+          </tr>  
+          <% }) %>
+      </tbody>  
+
+      <%- categorias.categoria %>
+     
+    </table>
+
+</div>
+<%-include('footer')%>
+
+
+ 

@@ -1,0 +1,58 @@
+@import "bootstrap-social.less";
+p {
+font-family: sans-serif;
+
+}
+
+h1{
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+
+
+body{
+
+background-color:rgb(255, 250, 250)
+}
+.side {
+
+float: left;
+font-size: large;
+
+}
+.side2{
+
+float: right;
+font-size: large;
+}
+.urgente{
+
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+float:right;
+margin-top:-50px;
+}
+a{
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-size: unset;
+color: white;
+
+}
+.vagasdestaque{
+border-color: blanchedalmond;
+border-radius: 10px;
+
+}
+.propaganda{
+
+border-color: blanchedalmond;
+border-style:none;
+}
+footer{
+border-style:solid;
+padding-top: 100px;
+padding-bottom: 200px;
+}
+.redes{
+width: 300px;
+display: inline-block;
+}

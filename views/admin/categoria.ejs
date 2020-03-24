@@ -1,0 +1,114 @@
+<%-include('header')%>
+
+<h1 class="text-center">Gerenciador de Categorias</h1>
+<hr>
+<div class="container">
+    <table class="table table-striped">
+     <tr>
+       <th>ID</th>
+      <th>Categoria</th>
+      <th>Acões</th>
+     </tr>
+      <tbody>
+          <tr>
+            <% categorias.forEach( cat =>{  %> 
+                <tr>
+                 
+                  <td><%- cat.id %></td>
+                  <td><%- cat.categoria %></td>
+                  <td><a class="btn btn-info" data-toggle="modal" href="#Editar<%- cat.id %>">Editar</a> || <a class="btn btn-danger" data-toggle="modal"  href="#Remover<%- cat.id %>">Remover</a> || <a class="btn btn-success" data-toggle="modal" data-target="#detalhe">Detalhes</a></td>
+               <!-- Modal detalhe -->
+ <td> 
+     <div class="modal fade" id="detalhe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Detalhes Da Categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- Modal Editar -->
+  <div class="modal fade" id="Editar<%- cat.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Editar Categoria</h5>
+          <div class="form-group">
+            
+        </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form class="form-group" action="">
+                
+              ID:<%- cat.id %>
+<br>
+               Categoria:   <input type="text" class="form-control" name="categoria"value="<%- cat.categoria %>">
+                
+
+            </form>
+           
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Remover -->
+  <div class="modal fade" id="Remover<%- cat.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Deseja Remover essa Categoria ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label for="Id" >
+                Id - <%- cat.id %>
+                </label> 
+                <br>
+                <label for="Categoria" >
+                  Categoria - <%- cat.categoria%>
+                    </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <a href="categoria/delete/<%- cat.id %>"> <button type="button" class="btn btn-primary">Remover Categoria</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</td>
+ <% }) %>
+              
+ 
+             
+          </tr>
+      </tbody>  
+     
+    </table>
+
+</div>
+<%-include('footer')%>
+
+
+  
