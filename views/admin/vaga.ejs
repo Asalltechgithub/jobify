@@ -3,6 +3,11 @@
 <h1 class="text-center">Gerenciador de Vagas</h1>
 <hr>
 <div class="container">
+
+<div class="form-group">
+    <a class="btn btn-primary" data-toggle="modal" data-target="#add">Adicionar Vaga </a>
+</div>
+<hr>
     <table class="table table-striped">
      <tr>
        <th>ID</th>
@@ -15,8 +20,52 @@
              
               <td><%- vaga.id %></td>
               <td><%- vaga.vaga %></td>
-              <td><a class="btn btn-info" data-toggle="modal" data-target="#editar<%- vaga.id %>" >Editar</a> || <a class="btn btn-danger" href="">Remover</a> || <a class="btn btn-success" data-toggle="modal" data-target="#detalhe">Detalhes</a></td>
+              <td><a class="btn btn-info" data-toggle="modal" data-target="#editar<%- vaga.id %>" >Editar</a> || <a class="btn btn-danger"  data-toggle="modal" data-target="#Remover<%- vaga.id %>" href=>Remover</a> || <a class="btn btn-success" data-toggle="modal" data-target="#detalhe">Detalhes</a></td>
          <td> 
+              <!-- Modal adicionar -->
+            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Adicionar Vaga</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                     <form action="" method="POST" role="form">
+                         <legend>Adicionar Vaga</legend>
+                     
+                         <div class="form-group">
+                             <label for="">Nome</label>
+                             <input type="text" name="vaga" class="form-control" id="" placeholder="Digite o nome da Vaga">
+                         </div>
+                            
+                         <div class="form-group">
+                            <label for="">Categoria</label>
+                          <select name="" id="input" class="form-control">
+                               <option value="">-- Select One --</option>
+                          </select>
+
+
+                        </div>    
+                        <div class="form-group">
+                            <label for="">Descrição</label>
+                            <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+ 
+                          </div>          
+
+                     </form>
+                     
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <a href=""> <button type="button" class="btn btn-primary">Save changes</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <!-- Modal detalhe -->
             <div class="modal fade" id="detalhe" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,7 +122,30 @@
                   </div>
                 </div>
               </div>
-            </div></td>
+            </div>
+         <!-- Modal Remover -->
+  <div class="modal fade" id="Remover<%- vaga.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Deseja Remover essa Vaga ?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <label for="Id" >
+                <%- vaga.id %>
+                <%- vaga.vaga %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <a href="categoria/delete/<%- vaga.id %>"> <button type="button" class="btn btn-primary">Remover Vaga</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+        </td>
           </tr>  
           <% }) %>
       </tbody>  
