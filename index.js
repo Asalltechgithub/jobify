@@ -1,9 +1,12 @@
 const express = require("express")
 const bodyparser=require("body-parser")
 const  app =express()
+const path = require('path')
 const sqlite = require('sqlite') 
-const dbconnection =sqlite.open('Jobify.sqlite',{Promise})
+const dbconnection =sqlite.open(path.resolve(__dirname, 'Jobify.sqlite' ),{Promise})
+
 const port =process.env.PORT || 3000
+
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(bodyparser.urlencoded({extended:true}))
