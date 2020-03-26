@@ -88,21 +88,21 @@
           </button>
         </div>
         <div class="modal-body">
-            <form class="form-group" action="">
+            <form class="form-group" method="POST" action="/admin/categoria/editar">
                 
-              ID:<%- cat.id %>
+              ID: <input type="text" class="form-control" name="id"value="<%- cat.id %>" readonly>
 <br>
                Categoria:   <input type="text" class="form-control" name="categoria"value="<%- cat.categoria %>">
                 
 
-            </form>
+            
            
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div></form>
       </div>
     </div>
   </div>

@@ -106,7 +106,17 @@ app.get('/admin/vaga',async(req,res)=>{
    
    /// categoria
    
-   
+   app.post("/admin/categoria/editar",async(req,res)=>{
+    const {id,categoria}=req.body
+    
+    
+    const db = await dbconnection
+    await db.run(`update categorias set categoria ='${categoria}' where id ='${id}'`)
+     
+    
+    res.redirect('/admin/categoria')
+    })
+
         app.get('/admin/categoria',async(req,res)=>{
         const db = await dbconnection
         const Categorias = await db.all('select * from categorias')
