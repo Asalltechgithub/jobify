@@ -8,6 +8,8 @@
     <a class="btn btn-primary" data-toggle="modal" data-target="#add">Adicionar Vaga </a>
 </div>
 <hr>
+
+    
     <table class="table table-striped">
      <tr>
        <th>ID</th>
@@ -34,35 +36,40 @@
                     </div>
                     <div class="modal-body">
                      
-                     <form action="" method="POST" role="form">
+                     <form action="/admin/vaga" method="POST">
                          <legend>Adicionar Vaga</legend>
                      
                          <div class="form-group">
                              <label for="">Nome</label>
-                             <input type="text" name="vaga" class="form-control" id="" placeholder="Digite o nome da Vaga" required>
+                             <input type="text" name="vaga" class="form-control" id="vaga" placeholder="Digite o nome da Vaga" required>
                          </div>
                             
                          <div class="form-group">
                             <label for="">Categoria</label>
-                          <select name="" id="input" class="form-control">
-                               <option value="">-- Select One --</option>
-                          </select>
+                            <select name="categoriaID"  class="form-control">
+                                <option value="0">Selecione ...</option>  
+                                <% categorias.forEach( cat =>{  %>
+                                <option value="<%- cat.id %>"><%- cat.categoria%></option>
+                                <%}) %>
+                           
+                           </select>
 
 
                         </div>    
                         <div class="form-group">
                             <label for="">Descrição</label>
-                            <textarea name="" id="input" class="form-control" rows="3" required="required"></textarea>
+                            <textarea name="descricao" id="input" class="form-control" rows="3" required="required"></textarea>
  
                           </div>          
 
-                     </form>
+                    
                      
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     <a href=""> <button type="submit" class="btn btn-primary">Save changes</button></a>
-                    </div>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                   </form> 
+                 </div>
                   </div>
                 </div>
               </div>
@@ -94,32 +101,36 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar Vaga</h5>
                     <div class="row">
-                      <h2>ID:<p><%- vaga.id %></p> </h2> 
+                      
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                   <h3><%- vaga.vaga %></h3> 
+                    
+                      <form action="/admin/vaga/editar" method="post">
+                       Id: <input class="form-control " type="text" name="id" value="<%- vaga.id %>" readonly>
+                   
+                   
+                       <input class="form-control" name="vaga" type="text" value="<%- vaga.vaga %>" >
                    
                    <label for="Categoria">Categoria</label>
-                    <select name="catID"  class="form-control">
-                        <option value="0">Selecione ...</option>  
-                        <% categorias.forEach( cat =>{  %>
-                        <option value="<%- cat.id %>"><%- cat.categoria%></option>
-                        <%}) %>
+                    <select name="catID"    class="form-control">
+                        <% categorias.forEach( c =>{  %> 
+                            <option value="<%- c.id  %>"> <%- c.categoria %></option>  
+                       <%} ) %>
                    
                    </select>
                    
                    <br>
                    <label for="descricao">Descrição</label>
-                    <p><%- vaga.descricao %></p>
+                    <textarea class="form-control" name="descricao" cols="30" rows="10"><%- vaga.descricao %></textarea>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                 </form> </div>
                 </div>
               </div>
             </div>
@@ -140,7 +151,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <a href="categoria/delete/<%- vaga.id %>"> <button type="button" class="btn btn-primary">Remover Vaga</button></a>
+         <a href="vaga/delete/<%- vaga.id %>"> <button type="button" class="btn btn-primary">Remover Vaga</button></a>
         </div>
       </div>
     </div>

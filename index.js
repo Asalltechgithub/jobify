@@ -1,9 +1,11 @@
 const express = require("express")
+const bodyparser=require("body-parser")
 const  app =express()
 const sqlite = require('sqlite') 
 const dbconnection =sqlite.open('Jobify.sqlite',{Promise})
 app.set('view engine','ejs')
 app.use(express.static('public'))
+app.use(bodyparser.urlencoded({extended:true}))
 
 const init = async ()=>{
     const db = await dbconnection 
@@ -52,6 +54,8 @@ res.render('admin/home')
 
 })
 
+//// vagas 
+
 app.get('/admin/vaga',async(req,res)=>{
 
     const db = await dbconnection
@@ -66,9 +70,20 @@ app.get('/admin/vaga',async(req,res)=>{
 }  
         
     })
-    res.render('admin/vaga',{vagas,categorias})
+
+
+        res.render('admin/vaga',{vagas,categorias})
     
     })
+    app.post("/admin/vaga",async(req,res)=>{
+       const {vaga,categoriaID,descricao}=req.body
+       
+        const db = await dbconnection
+        await db.run(`insert into vagas(vaga, categoriaID ,descricao) values('${vaga}','${categoriaID}','${descricao}' )`)
+        
+        res.redirect('/admin/vaga')
+        })
+
     app.get("/admin/vaga/delete/:id",async(req,res)=>{
 
         const db = await dbconnection
@@ -76,21 +91,49 @@ app.get('/admin/vaga',async(req,res)=>{
         
         res.redirect('/admin/vaga')
         })
-
-    app.get('/admin/categoria',async(req,res)=>{
+        app.post("/admin/vaga/editar",async(req,res)=>{
+            const {id,vaga,catID,descricao}=req.body
+            
+        console.log(id,vaga,catID,descricao)
+            const db = await dbconnection
+            await db.run(`update vagas set vaga ='${vaga}',categoriaID ='${catID}',descricao ='${descricao}'  where id ='${id}'`)
+             
+            
+            res.redirect('/admin/vaga')
+            })
+   
+   
+   
+   /// categoria
+   
+   
+        app.get('/admin/categoria',async(req,res)=>{
         const db = await dbconnection
         const Categorias = await db.all('select * from categorias')
         
         res.render('admin/categoria',{categorias:Categorias})
         
         })
-app.get("/admin/categoria/delete/:id",async(req,res)=>{
+        app.post("/admin/categoria",async(req,res)=>{
+            const {categoria}=req.body
+            
+             const db = await dbconnection
+             await db.run(`insert into categorias(categoria) values('${categoria}')`)
+             
+             res.redirect('/admin/categoria')
+             })
 
-const db = await dbconnection
-await db.run('delete from categorias where id ='+req.params.id+ '')
+             app.get("/admin/categoria/delete/:id",async(req,res)=>{
 
-res.redirect('/admin/categoria')
-})
+
+                const db = await dbconnection
+
+                await db.run('delete from categorias where id ='+req.params.id+ '')
+
+
+                res.redirect('/admin/categoria')
+
+            })
 
 
    
