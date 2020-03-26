@@ -3,6 +3,7 @@ const bodyparser=require("body-parser")
 const  app =express()
 const sqlite = require('sqlite') 
 const dbconnection =sqlite.open('Jobify.sqlite',{Promise})
+const port =process.env.PORT || 3000
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(bodyparser.urlencoded({extended:true}))
@@ -147,7 +148,7 @@ app.get('/admin/vaga',async(req,res)=>{
 
 
    
- app.listen(3000,(err)=>{
+ app.listen(port,(err)=>{
 
     if (err){
 console.log("Não rodou ",err)
