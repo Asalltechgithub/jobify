@@ -6,7 +6,7 @@ const sqlite = require('sqlite')
 const dbconnection =sqlite.open(path.resolve(__dirname, 'Jobify.sqlite' ),{Promise})
 
 const port =process.env.PORT || 3000
-
+app.set("views",path.join(__dirname,'views'))
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(bodyparser.urlencoded({extended:true}))
